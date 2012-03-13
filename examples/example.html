@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<title>JavaScript Token Input</title>
+
+<link rel="stylesheet" type="text/css" href="../css/html-token-input.css" />
+<link rel="stylesheet" type="text/css" href="./example.css" />
+
+<script src="../js/html-token-input.js"></script>
+
+<body>
+
+<div>
+  <label>Native look: (webkit-only)</label>
+  <input type="text" id="token-input-field" value="Lorem;Dolor sit Amet" />
+</div>
+
+<div id="token-input-custom">
+  <label>Custom look:</label>
+  <input type="text" id="token-input-field-custom" value="Lorem;Dolor sit Amet" />
+</div>
+
+<script>
+HTMLTokenInput.create(document.getElementById('token-input-field'));
+HTMLTokenInput.create(document.getElementById('token-input-field-custom'));
+</script>

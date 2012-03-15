@@ -19,7 +19,47 @@
   <input type="text" id="token-input-field-custom" value="Lorem;Dolor sit Amet" />
 </div>
 
+<div id="token-input-search">
+  <label>Native look + data source:</label>
+  <input type="text" id="token-input-field-search" value="Lorem;Dolor sit Amet" />
+</div>
+
 <script>
+// Native look
 HTMLTokenInput.create(document.getElementById('token-input-field'));
+
+// Custom look
 HTMLTokenInput.create(document.getElementById('token-input-field-custom'));
+
+// Native look + data source / suggestions
+HTMLTokenInput.create(document.getElementById('token-input-field-search'), {
+  data_source: {
+    items: [
+      { token: 'Lorem ipsum' },
+      { token: 'Dolor sit amet' },
+      { token: 'Consectetur adipisicing' },
+      { token: 'Elit' },
+      { token: 'Sed do eiusmod' },
+      { token: 'Tempor incididunt' },
+      { token: 'Ut Labore' },
+      { token: 'Et dolore magna' },
+      { token: 'Aliqua' },
+      { token: 'Ut enim ad minim veniam' },
+      { token: 'Quis nostrud' },
+      { token: 'Exercitation ullamco' },
+      { token: 'Laboris nisi' }
+    ],
+    search: function (query, callback) {
+      query = query.toLowerCase();
+
+      var results = this.items.filter(function (item) {
+        return item.token.toLowerCase().indexOf(query) !== -1;
+      });
+
+      callback(null, results);
+    },
+    abort: function () {}
+  },
+  closed: true
+});
 </script>

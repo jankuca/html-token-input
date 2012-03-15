@@ -2,6 +2,7 @@
 .token-input {
   -webkit-appearance: textfield;
   display: inline-block;
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   padding: 3px 6px;
@@ -36,9 +37,61 @@
     rgba(255, 255, 255, 0.5) 0 1px 0 inset;
   line-height: 18px;
   -webkit-transition: 100ms background ease;
+  cursor: default;
 }
 .token-input-list span:focus {
   border: 1px solid #ACF;
   background-color: #8CF;
   text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+}
+
+.token-input-search-results {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: -1px;
+  right: 0;
+  box-sizing: padding-box;
+  width: 100%;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+}
+.token-input-search-results {
+  display: inline-block;
+}
+
+.token-input-search-results span {
+  display: block;
+  padding: 3px 8px;
+  line-height: 18px;
+  cursor: default;
+}
+.token-input-search-results span.focus {
+  padding: 2px 8px;
+  border: 1px solid #BDF;
+  border-left: 0;
+  border-right: 0;
+  background-color: #DEF;
+  background-clip: padding-box;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  box-shadow:
+    rgba(255, 255, 255, 1) 0 0 3px,
+    rgba(255, 255, 255, 0.5) 0 1px 0 inset;
+}
+
+.token-input-search-results .message {
+  font-style: italic;
+  text-align: center;
+}
+
+.token-input img {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  border-radius: 2px;
+  box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 }

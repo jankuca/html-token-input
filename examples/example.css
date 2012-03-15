@@ -7,7 +7,7 @@ html {
 
 body {
   width: 500px;
-  margin: 200px auto;
+  margin: 100px auto;
   padding: 30px;
   padding-bottom: 20px;
   background-color: #FFF;
@@ -19,7 +19,8 @@ body > div {
   margin-bottom: 30px;
 }
 
-#token-input-custom .token-input {
+#token-input-custom .token-input,
+#token-input-search-icons .token-input {
   -webkit-appearance: none;
   border: 1px solid #CCC;
   border-radius: 3px;

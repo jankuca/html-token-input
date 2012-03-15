@@ -24,6 +24,11 @@
   <input type="text" id="token-input-field-search" value="Lorem;Dolor sit Amet" />
 </div>
 
+<div id="token-input-search-icons">
+  <label>Custom look + data source + icons:</label>
+  <input type="text" id="token-input-field-search-icons" />
+</div>
+
 <script>
 // Native look
 HTMLTokenInput.create(document.getElementById('token-input-field'));
@@ -48,6 +53,40 @@ HTMLTokenInput.create(document.getElementById('token-input-field-search'), {
       { token: 'Quis nostrud' },
       { token: 'Exercitation ullamco' },
       { token: 'Laboris nisi' }
+    ],
+    search: function (query, callback) {
+      query = query.toLowerCase();
+
+      var results = this.items.filter(function (item) {
+        return item.token.toLowerCase().indexOf(query) !== -1;
+      });
+
+      callback(null, results);
+    },
+    abort: function () {}
+  },
+  closed: true
+});
+
+// Custom look + data source + icons
+HTMLTokenInput.create(document.getElementById('token-input-field-search-icons'), {
+  data_source: {
+    items: [
+      { token: 'Jan Kuča', icon: 'http://graph.facebook.com/100001142913685/picture' },
+      { token: 'Adam Bubeníček', icon: 'http://graph.facebook.com/1260790773/picture' },
+      { token: 'Alex Studnička', icon: 'http://graph.facebook.com/1232241649/picture' },
+      { token: 'Dasa Volfova', icon: 'http://graph.facebook.com/1219399950/picture' },
+      { token: 'David Dostal', icon: 'http://graph.facebook.com/1192081137/picture' },
+      { token: 'Filip Becher', icon: 'http://graph.facebook.com/100002323080267/picture' },
+      { token: 'Jakub Rož', icon: 'http://graph.facebook.com/1012326907/picture' },
+      { token: 'Jan Palounek', icon: 'http://graph.facebook.com/100000125957426/picture' },
+      { token: 'Jaromír Květoň', icon: 'http://graph.facebook.com/1471806457/picture' },
+      { token: 'Karel Kolář', icon: 'http://graph.facebook.com/100001321225862/picture' },
+      { token: 'Marek Hrabě', icon: 'http://graph.facebook.com/1165664349/picture' },
+      { token: 'Matej Paulech', icon: 'http://graph.facebook.com/1408222571/picture' },
+      { token: 'Patrik Holčák', icon: 'http://graph.facebook.com/1728982399/picture' },
+      { token: 'Přéma Polanský', icon: 'http://graph.facebook.com/1250493819/picture' },
+      { token: 'Matěj Hošna', icon: 'http://graph.facebook.com/1104612088/picture' }
     ],
     search: function (query, callback) {
       query = query.toLowerCase();

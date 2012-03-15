@@ -20,7 +20,7 @@ goog.provide('HTMLTokenInput');
  * }} Options.
  */
 var HTMLTokenInput = function (input, options) {
-	options = options || {};
+  options = options || {};
 
   /**
    * The token separator used in the output
@@ -160,11 +160,18 @@ HTMLTokenInput.prototype.build = function () {
 /**
  * Adds a new token to the end of the token list
  * @param {string} token A token value.
+ * @param {string=} icon_url A URL of an associated image/icon.
  */
-HTMLTokenInput.prototype.pushToken = function (token) {
+HTMLTokenInput.prototype.pushToken = function (token, icon_url) {
   var item = this.document_.createElement('span');
   item.setAttribute('tabindex', '-1');
   item.textContent = token;
+
+  if (icon_url) {
+    var icon = new Image();
+    icon.src = icon_url;
+    item.insertBefore(icon, item.firstChild);
+  }
 
   this.list_.appendChild(item);
   this.field_.focus();
@@ -176,7 +183,7 @@ HTMLTokenInput.prototype.pushToken = function (token) {
  * Snaps the current token list and updates the output {HTMLInputElement}
  */
 HTMLTokenInput.prototype.snap_ = function () {
-	var items = this.list_.childNodes;
+  var items = this.list_.childNodes;
   var tokens = Array.prototype.map.call(items, function (item) {
     return item.textContent;
   });
@@ -412,6 +419,14 @@ HTMLTokenInput.prototype.showSearchResults_ = function (results) {
       item.className = 'focus';
     }
 
+    if (result.icon) {
+      item.setAttribute('data-icon', result.icon);
+
+      var icon = new Image();
+      icon.src = result.icon;
+      item.insertBefore(icon, item.firstChild);
+    }
+
     frag.appendChild(item);
   });
 
@@ -450,8 +465,9 @@ HTMLTokenInput.prototype.handleReturnKey_ = function (target, e) {
     if (index !== -1) {
       var item = this.search_results_.childNodes[index];
       var token = item.getAttribute('data-token')
+      var icon = item.getAttribute('data-icon') || null;
 
-      this.pushToken(token);
+      this.pushToken(token, icon);
 
       field.textContent = '';
       field.focus();
@@ -574,7 +590,8 @@ HTMLTokenInput.IDataSource = function () {};
  * @param {string} query The search query.
  * @param {function (Error, Array.<{
  *   token: string,
- *   detail: ?string
+ *   detail: ?string,
+ *   icon: ?string
  * }>)} callback The callback function to which to pass the search results.
  */
 HTMLTokenInput.IDataSource.prototype.search = function (query, callback) {};

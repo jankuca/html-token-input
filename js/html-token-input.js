@@ -324,6 +324,7 @@ HTMLTokenInput.prototype.setupListeners_ = function () {
 
     switch (e.keyCode) {
     case 13: // Return
+    case 188: // Comma
       self.handleReturnKey_(target, e);
       break;
     case 8: // Backspace
